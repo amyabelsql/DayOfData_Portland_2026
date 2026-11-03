@@ -1,7 +1,7 @@
 # Step 05. A brand new SQL Server, a fresh deploy, and a full test run. Locally.
 param([switch]$Pause)
 . "$PSScriptRoot/../scripts/Common.ps1"
-Start-Demo '05' 'A fresh SQL Server every time' 'every change gets tested' -Pause:$Pause
+Start-Demo '05' 'Test every change in a SQL Server container' 'every change gets tested' -Pause:$Pause
 
 if (Initialize-DotEnv) { Write-Ok 'Made .env with a random SQL password (gitignored)' }
 

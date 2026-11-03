@@ -1,8 +1,25 @@
-**DemoShop wiki**
+**DemoShop Data Team**
 
-- [[Home]]
-- [[How We Decide What To Automate|How-We-Decide-What-To-Automate]]
-- [[DemoShop Data Model|DemoShop-Data-Model]]
-- [[Pull Request Flow|Pull-Request-Flow]]
+[[Home]]
+
+**Getting work done**
+- [[Request a database change|Request-A-Database-Change]]
+- [[Project board|Project-Board]]
+- [[Reviewing pull requests|Reviewing-Pull-Requests]]
+- [[Labels]]
+
+**On call**
+- [[On-call rotation|On-Call-Rotation]]
+- [[Incident response SOP|Incident-Response-SOP]]
+
+**Standards**
+- [[Naming conventions|Naming-Conventions]]
 - [[Branching]]
-- [[Deployment Runbook|Deployment-Runbook]]
+- [[Deployment runbook|Deployment-Runbook]]
+- [[How we decide what to automate|How-We-Decide-What-To-Automate]]
+
+**Reference**
+- [[DemoShop data model|DemoShop-Data-Model]]
+- [[Maintenance and backups|Maintenance-And-Backups]]
+
+[Open the project board](https://github.com/users/amyabelsql/projects/11)

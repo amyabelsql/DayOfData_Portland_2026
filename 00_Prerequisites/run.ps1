@@ -7,7 +7,7 @@ param(
     [switch]$Pause
 )
 . "$PSScriptRoot/../scripts/Common.ps1"
-Start-Demo '00' 'Before the talk' 'get set up once' -Pause:$Pause
+Start-Demo '00' 'Set up your repo' 'get set up once' -Pause:$Pause
 
 # --- 1. Tools ------------------------------------------------------------------
 Write-Step R 'Check that the tools are installed.'

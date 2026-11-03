@@ -1,7 +1,7 @@
 # Step 06. The pull request does its own chores, and Copilot writes the first draft.
 param([switch]$Pause)
 . "$PSScriptRoot/../scripts/Common.ps1"
-Start-Demo '06' 'Where Copilot helps, PRs that run themselves' 'the pull request does the chores' -Pause:$Pause
+Start-Demo '06' 'Copilot and pull requests that run themselves' 'the pull request does the chores' -Pause:$Pause
 
 $branch = 'demo/new-proc'
 $files = [ordered]@{

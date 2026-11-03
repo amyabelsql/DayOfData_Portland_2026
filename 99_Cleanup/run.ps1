@@ -1,7 +1,7 @@
 # Step 99. Leave it ready for the next run.
 param([switch]$Pause)
 . "$PSScriptRoot/../scripts/Common.ps1"
-Start-Demo '99' 'After the talk' 'reset for next time' -Pause:$Pause
+Start-Demo '99' 'Clean up after the talk' 'reset for next time' -Pause:$Pause
 
 if ((Read-Host 'This closes demo PRs and issues and resets main. Type RESET to continue') -cne 'RESET') {
     Write-Watch 'Nothing changed.'; exit 0

@@ -1,7 +1,7 @@
 # Step 03. Docs and diagrams are text, so they get versioned like code.
 param([switch]$Pause)
 . "$PSScriptRoot/../scripts/Common.ps1"
-Start-Demo '03' 'Docs that live with the code' 'docs and diagrams are text' -Pause:$Pause
+Start-Demo '03' 'Docs and diagrams in a wiki' 'docs and diagrams are text' -Pause:$Pause
 
 $repo = Get-Repo
 $temp = Join-Path ([IO.Path]::GetTempPath()) "wiki-$([guid]::NewGuid().ToString('N').Substring(0, 8))"

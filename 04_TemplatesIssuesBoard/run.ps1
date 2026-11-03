@@ -1,7 +1,7 @@
 # Step 04. The busy work of tracking requests can run itself.
 param([switch]$Pause)
 . "$PSScriptRoot/../scripts/Common.ps1"
-Start-Demo '04' 'Templates, issues, and boards' 'busy work runs itself' -Pause:$Pause
+Start-Demo '04' 'Issue forms and a project board' 'busy work runs itself' -Pause:$Pause
 
 $repo  = Get-Repo
 $owner = $repo.Split('/')[0]

@@ -1,7 +1,7 @@
 # Step 01. A workflow is just a file.
 param([switch]$Pause)
 . "$PSScriptRoot/../scripts/Common.ps1"
-Start-Demo '01' 'How a workflow works' 'a workflow is just a file' -Pause:$Pause
+Start-Demo '01' 'Your first GitHub workflow' 'a workflow is just a file' -Pause:$Pause
 
 $file = '.github/workflows/01-hello-workflow.yml'
 Write-Step R 'Show the workflow file. Point at the trigger (on), the job, and the steps.'

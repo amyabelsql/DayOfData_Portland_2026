@@ -1,7 +1,7 @@
 # Step 02. You don't have to leave SSMS to work with GitHub.
 param([switch]$Pause)
 . "$PSScriptRoot/../scripts/Common.ps1"
-Start-Demo '02' 'SSMS meets GitHub' 'your scripts are code' -Pause:$Pause
+Start-Demo '02' 'Use GitHub from SSMS' 'your scripts are code' -Pause:$Pause
 
 $branch = 'demo/ssms-change'
 $repo = Get-Repo

@@ -1,7 +1,7 @@
 # Step 07. A little chaos is fun on stage. In production, you want a safety net.
 param([switch]$Pause)
 . "$PSScriptRoot/../scripts/Common.ps1"
-Start-Demo '07' 'Guardrails I add every time' 'automation needs a safety net' -Pause:$Pause
+Start-Demo '07' 'Guardrails for safe workflows' 'automation needs a safety net' -Pause:$Pause
 
 Write-Step R 'Grade a workflow that breaks every rule on purpose. Expect all red.'
 & "$PSScriptRoot/Test-Guardrails.ps1" -Path "$PSScriptRoot/examples/risky-workflow.yml"

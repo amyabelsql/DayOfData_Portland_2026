@@ -7,14 +7,14 @@ The repo follows the talk. Every demo is a numbered folder. Every folder has a R
 
 | Step folder | Slide | The big idea | Run this | What the room sees |
 |---|---|---|---|---|
-| `00_Prerequisites` | Before the talk | Get set up once | `./00_Prerequisites/run.ps1` | Nothing. This is your setup |
-| `01_FirstWorkflow` | How a workflow works | A workflow is just a file | `./01_FirstWorkflow/run.ps1` | A workflow starts, runs, and reports back |
-| `02_SSMS` | SSMS meets GitHub | Your scripts are code | `./02_SSMS/run.ps1` | A change made in SSMS turns into a pull request |
-| `03_DocsWikiMermaid` | Docs that live with the code | Docs and diagrams are text | `./03_DocsWikiMermaid/run.ps1` | A full wiki with five diagrams, published in seconds |
-| `04_TemplatesIssuesBoard` | Templates, issues, and boards | Busy work runs itself | `./04_TemplatesIssuesBoard/run.ps1` | Issues and a project board that fill in on their own |
-| `05_Containers` | A fresh SQL Server every time | Every change gets tested | `./05_Containers/run.ps1` | SQL Server starts, the tests run, then it's gone |
-| `06_CopilotAndPRs` | Where Copilot helps, PRs that run themselves | The pull request does the chores | `./06_CopilotAndPRs/run.ps1` | A pull request that labels, reviews, and merges itself |
-| `07_Guardrails` | 60 days, Guardrails I add every time | Automation needs a safety net | `./07_Guardrails/run.ps1` | A checker that grades workflows, and a job that files its own bug |
+| `00_Prerequisites` | Set up your repo | Get set up once | `./00_Prerequisites/run.ps1` | Nothing. This is your setup |
+| `01_FirstWorkflow` | Your first GitHub workflow | A workflow is just a file | `./01_FirstWorkflow/run.ps1` | A workflow starts, runs, and reports back |
+| `02_SSMS` | Use GitHub from SSMS | Your scripts are code | `./02_SSMS/run.ps1` | A change made in SSMS turns into a pull request |
+| `03_DocsWikiMermaid` | Docs and diagrams in a wiki | Docs and diagrams are text | `./03_DocsWikiMermaid/run.ps1` | A full DBA team wiki with a diagram on every page, published in seconds |
+| `04_TemplatesIssuesBoard` | Issue forms and a project board | Busy work runs itself | `./04_TemplatesIssuesBoard/run.ps1` | Issues and a project board that fill in on their own |
+| `05_Containers` | Test every change in a SQL Server container | Every change gets tested | `./05_Containers/run.ps1` | SQL Server starts, the tests run, then it's gone |
+| `06_CopilotAndPRs` | Copilot and pull requests that run themselves | The pull request does the chores | `./06_CopilotAndPRs/run.ps1` | A pull request that labels, reviews, and merges itself |
+| `07_Guardrails` | Guardrails for safe workflows | Automation needs a safety net | `./07_Guardrails/run.ps1` | A checker that grades workflows, and a job that files its own bug |
 | `99_Cleanup` | After the talk | Reset for next time | `./99_Cleanup/run.ps1` | Nothing. The repo goes back to clean |
 
 Run every command with `pwsh` from the repo root.
@@ -137,7 +137,7 @@ github-automation-chaos/
 ### README template for every step folder
 
 ```markdown
-# 05 · A fresh SQL Server every time
+# 05 · Test every change in a SQL Server container
 
 **The big idea:** every change gets tested on a clean server, and nobody has to remember to do it.
 
@@ -233,14 +233,21 @@ The big idea: when docs and diagrams are text, they get reviewed and versioned l
 
 | Page | What it shows | Mermaid type |
 |---|---|---|
-| `Home.md` | What this repo is, plus a map of the eight steps | flowchart |
+| `Home.md` | Quick links, the team, and how work reaches the DBAs | flowchart |
+| `Request-A-Database-Change.md` | Filling out the issue form and the request lifecycle | stateDiagram |
+| `Project-Board.md` | Board columns, Server and Risk fields, weekly triage | flowchart |
+| `Reviewing-Pull-Requests.md` | What needs a DBA, the review checklist, how to approve | sequenceDiagram |
+| `Labels.md` | Every label and how it gets added | flowchart |
+| `On-Call-Rotation.md` | Schedule, escalation, handoff checklist | gantt |
+| `Incident-Response-SOP.md` | Severity levels, first 15 minutes, starter queries | flowchart |
+| `Naming-Conventions.md` | Objects, files, and branches | mindmap |
+| `Branching.md` | main, a change branch, a hotfix, the merges | gitGraph |
+| `Deployment-Runbook.md` | Pre-deploy checklist, deploy, rollback | flowchart |
 | `How-We-Decide-What-To-Automate.md` | The 3 F's and 4 R's as a decision tree | flowchart |
-| `DemoShop-Data-Model.md` | Customers and Orders | erDiagram |
-| `Pull-Request-Flow.md` | Author, CODEOWNERS, Actions, Copilot, merge | sequenceDiagram |
-| `Branching.md` | main, a feature branch, the fix, the merge | gitGraph |
-| `Deployment-Runbook.md` | Issue, pull request, tests, deploy, with a rollback path | flowchart |
+| `DemoShop-Data-Model.md` | Customers, Orders, keys, and procs | erDiagram |
+| `Maintenance-And-Backups.md` | Maintenance window, nightly jobs, restore tests | gantt |
 
-Also include `_Sidebar.md` for navigation.
+Also include `_Sidebar.md` for navigation and `_Footer.md` for the note at the bottom of every page.
 
 `run.ps1` does this:
 
@@ -485,13 +492,13 @@ Written for the audience.
 
 | Slide | Run |
 |---|---|
-| How a workflow works | `pwsh ./01_FirstWorkflow/run.ps1` |
-| SSMS meets GitHub | `pwsh ./02_SSMS/run.ps1 -Pause` |
-| Docs that live with the code | `pwsh ./03_DocsWikiMermaid/run.ps1`, then click through the wiki |
-| Templates, issues, and boards | `pwsh ./04_TemplatesIssuesBoard/run.ps1`, then file one live issue from the form |
-| A fresh SQL Server every time | `pwsh ./05_Containers/run.ps1`, then `break-it.ps1` and `fix-it.ps1` |
-| Where Copilot helps, PRs that run themselves | Show Copilot's pull request, then `pwsh ./06_CopilotAndPRs/run.ps1` |
-| Guardrails I add every time | `pwsh ./07_Guardrails/run.ps1` |
+| Your first GitHub workflow | `pwsh ./01_FirstWorkflow/run.ps1` |
+| Use GitHub from SSMS | `pwsh ./02_SSMS/run.ps1 -Pause` |
+| Docs and diagrams in a wiki | `pwsh ./03_DocsWikiMermaid/run.ps1`, then click through the wiki |
+| Issue forms and a project board | `pwsh ./04_TemplatesIssuesBoard/run.ps1`, then file one live issue from the form |
+| Test every change in a SQL Server container | `pwsh ./05_Containers/run.ps1`, then `break-it.ps1` and `fix-it.ps1` |
+| Copilot and pull requests that run themselves | Show Copilot's pull request, then `pwsh ./06_CopilotAndPRs/run.ps1` |
+| Guardrails for safe workflows | `pwsh ./07_Guardrails/run.ps1` |
 
 ### After
 
