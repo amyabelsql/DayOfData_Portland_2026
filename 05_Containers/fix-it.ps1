@@ -21,4 +21,4 @@ git switch main --quiet
 Write-Step R 'Watch the checks go green.'
 if (Watch-PrChecks $pr) { Write-Host ""; Write-Ok 'Green. Same test, same fresh server, and the fix is proven.' }
 else { Write-Fail 'Still red. Check the run log.'; exit 1 }
-gh pr view $pr --web
+Open-Page (gh pr view $pr --json url --jq .url)

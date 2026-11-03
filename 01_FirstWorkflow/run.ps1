@@ -16,4 +16,4 @@ gh run watch $run --exit-status
 Write-Ok 'Done. A file, a trigger, a machine, a result.'
 
 Write-Step R 'Open the run in the browser to show the job summary.'
-gh run view $run --web
+Open-Page (gh run view $run --json url --jq .url)

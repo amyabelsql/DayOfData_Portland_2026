@@ -77,9 +77,9 @@ else {
 
 # --- Show it -----------------------------------------------------------------
 Write-Step R 'Open the issue form, the board, and the release.'
-Start-Process "https://github.com/$repo/issues/new?template=database-change.yml"
-Start-Process $project.url
-gh release view v1.0.0 --web
+Open-Page "https://github.com/$repo/issues/new?template=database-change.yml"
+Open-Page $project.url
+Open-Page (gh release view v1.0.0 --json url --jq .url)
 
 Write-Watch 'Two one-time clicks the API cannot do yet:'
 Write-Clicks @(

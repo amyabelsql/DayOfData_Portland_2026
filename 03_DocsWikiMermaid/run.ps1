@@ -13,7 +13,7 @@ while ($true) {
     if ($LASTEXITCODE -eq 0) { break }
     Write-Watch "The wiki isn't set up yet. GitHub needs one page made by hand first."
     Write-Clicks @('Click "Create the first page".', 'Click "Save page". Leave the text as it is.')
-    gh browse --wiki
+    Open-Page "https://github.com/$repo/wiki"
     [void](Read-Host '      Press Enter when the first page is saved')
 }
 $PSNativeCommandUseErrorActionPreference = $true
@@ -33,4 +33,4 @@ try {
 finally { Pop-Location; Remove-Item $temp -Recurse -Force }
 
 Write-Step R 'Open the wiki. Every page has a diagram GitHub draws from text.'
-gh browse --wiki
+Open-Page "https://github.com/$repo/wiki"

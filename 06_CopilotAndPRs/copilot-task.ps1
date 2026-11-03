@@ -21,5 +21,5 @@ else {
     $PSNativeCommandUseErrorActionPreference = $true
 }
 Write-Ok $url
-Start-Process $url
+Open-Page $url
 Write-Watch 'Copilot opens a draft pull request in a few minutes. Show it at step 06.'

@@ -53,5 +53,5 @@ else {
     gh pr create --head $branch --base main --fill --label database
     $pr = Get-OpenPr $branch
 }
-gh pr view $pr --web
+Open-Page (gh pr view $pr --json url --jq .url)
 Write-Ok 'Your SSMS change now has history, a reviewer, and a way back.'

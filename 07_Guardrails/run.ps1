@@ -20,5 +20,5 @@ Write-Step R 'Show the issue the workflow opened on its own.'
 Start-Sleep -Seconds 5
 gh issue list --label automation --label needs-dba --state open --limit 3
 $url = gh issue list --label automation --label needs-dba --state open --limit 1 --json url --jq '.[0].url'
-if ($url) { Start-Process $url; Write-Ok 'Nobody had to notice. The workflow filed the bug.' }
+if ($url) { Open-Page $url; Write-Ok 'Nobody had to notice. The workflow filed the bug.' }
 else      { Write-Watch "No issue yet. Check the run: gh run view $run --web" }

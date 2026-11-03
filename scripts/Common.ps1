@@ -35,6 +35,12 @@ function Write-Ok    { param([string]$Message) Write-Host "  OK    $Message" -Fo
 function Write-Watch { param([string]$Message) Write-Host "  WATCH $Message" -ForegroundColor Yellow }
 function Write-Fail  { param([string]$Message) Write-Host "  FAIL  $Message" -ForegroundColor Red }
 
+# Opens a page in the browser. Set DEMO_NO_BROWSER=1 to print the URL instead (handy when testing).
+function Open-Page {
+    param([string]$Url)
+    if ($env:DEMO_NO_BROWSER) { Write-Host "  PAGE  $Url" } else { Start-Process $Url }
+}
+
 # Prints manual clicks as a numbered list.
 function Write-Clicks {
     param([string[]]$Steps)
