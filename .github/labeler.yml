@@ -1,0 +1,12 @@
+# Rules for .github/workflows/06-labeler.yml (actions/labeler v5+ format).
+database:
+  - changed-files:
+      - any-glob-to-any-file: "database/**"
+
+automation:
+  - changed-files:
+      - any-glob-to-any-file: ["0*_*/**", ".github/**"]
+
+docs:
+  - changed-files:
+      - any-glob-to-any-file: ["03_DocsWikiMermaid/**", "*.md"]

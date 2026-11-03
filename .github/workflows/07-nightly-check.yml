@@ -1,0 +1,48 @@
+# Step 07. Runs the database tests every night. If they fail, it files its own bug.
+#
+# Heads up: in a public repo, GitHub turns off scheduled workflows after 60 days
+# with no repository activity. Push a commit or re-enable it in the Actions tab.
+name: 07 Nightly check
+
+on:
+  schedule:
+    - cron: "17 9 * * *"      # 09:17 UTC, about 2 AM in Portland
+  workflow_dispatch:
+    inputs:
+      simulate_failure:
+        description: "Make the tests fail on purpose, to see the issue get filed"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 07-nightly-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  tests:
+    # A job that calls another workflow can't set timeout-minutes.
+    # The called job sets its own (15 minutes).
+    uses: ./.github/workflows/05-database-tests.yml
+    with:
+      simulate_failure: ${{ inputs.simulate_failure || false }}
+
+  file-a-bug:
+    needs: tests
+    if: failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - name: Open an issue with a link to the run
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Nightly database check failed ($(date -u +%Y-%m-%d))" \
+            --label automation --label needs-dba \
+            --body "The nightly database tests failed. Run: $RUN_URL"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

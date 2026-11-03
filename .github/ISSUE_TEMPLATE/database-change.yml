@@ -1,0 +1,55 @@
+name: Database change request
+description: Ask the DBA team for a schema, data, permission, or index change.
+title: "[DB change] "
+labels: ["database-change", "needs-dba"]
+body:
+  - type: markdown
+    attributes:
+      value: Fill this in once and the DBA team has everything they need. No back and forth.
+  - type: input
+    id: server
+    attributes:
+      label: Server
+      placeholder: sql-prod-01
+    validations:
+      required: true
+  - type: input
+    id: database
+    attributes:
+      label: Database
+      placeholder: DemoShop
+    validations:
+      required: true
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Type of change
+      options:
+        - Schema
+        - Data fix
+        - Permissions
+        - Index
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-and-why
+    attributes:
+      label: What and why
+      description: What should change, and what problem does it solve?
+    validations:
+      required: true
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Rollback plan
+      description: How do we undo this if it goes wrong?
+    validations:
+      required: true
+  - type: input
+    id: when
+    attributes:
+      label: When can this run
+      placeholder: Any weeknight after 8 PM
+    validations:
+      required: false

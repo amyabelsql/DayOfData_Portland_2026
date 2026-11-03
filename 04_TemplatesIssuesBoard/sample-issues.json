@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Add index on Orders.CustomerId",
+    "body": "**Server:** sql-prod-01\n**Database:** DemoShop\n**Type of change:** Index\n\n**What and why:** The customer order history page scans dbo.Orders. An index on CustomerId should fix it.\n\n**Rollback plan:** DROP INDEX IX_Orders_CustomerId ON dbo.Orders;",
+    "status": "In Progress", "server": "sql-prod-01", "risk": "Low"
+  },
+  {
+    "title": "Grant read access to the reporting team",
+    "body": "**Server:** sql-prod-01\n**Database:** DemoShop\n**Type of change:** Permissions\n\n**What and why:** The reporting team needs SELECT on dbo.Orders and dbo.Customers for the monthly sales report.\n\n**Rollback plan:** REVOKE the grants from the Reporting role.",
+    "status": "Todo", "server": "sql-prod-01", "risk": "Medium"
+  },
+  {
+    "title": "Fix duplicate customer emails",
+    "body": "**Server:** sql-prod-01\n**Database:** DemoShop\n**Type of change:** Data fix\n\n**What and why:** Three customers share an email after a bad import. Merge them and add a unique constraint.\n\n**Rollback plan:** Restore the affected rows from the backup table made before the fix.",
+    "status": "Todo", "server": "sql-prod-01", "risk": "High"
+  },
+  {
+    "title": "Archive cancelled orders older than a year",
+    "body": "**Server:** sql-prod-02\n**Database:** DemoShop\n**Type of change:** Data fix\n\n**What and why:** Move old cancelled orders to an archive table to keep dbo.Orders small.\n\n**Rollback plan:** Move the rows back from dbo.OrdersArchive.",
+    "status": "Done", "server": "sql-prod-02", "risk": "Medium"
+  },
+  {
+    "title": "Add CreatedBy column to Orders",
+    "body": "**Server:** sql-dev-01\n**Database:** DemoShop\n**Type of change:** Schema\n\n**What and why:** Support wants to know who entered each order. Add a nullable CreatedBy column.\n\n**Rollback plan:** ALTER TABLE dbo.Orders DROP COLUMN CreatedBy;",
+    "status": "In Progress", "server": "sql-dev-01", "risk": "Low"
+  },
+  {
+    "title": "Rebuild fragmented indexes on Customers",
+    "body": "**Server:** sql-prod-02\n**Database:** DemoShop\n**Type of change:** Index\n\n**What and why:** Index fragmentation on dbo.Customers is over 60 percent. Rebuild during the weekend window.\n\n**Rollback plan:** None needed. A rebuild doesn't change data.",
+    "status": "Done", "server": "sql-prod-02", "risk": "Low"
+  }
+]

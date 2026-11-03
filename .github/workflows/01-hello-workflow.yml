@@ -1,0 +1,42 @@
+# Step 01. A workflow is just a file: a trigger, a job, and some steps.
+name: 01 Hello workflow
+
+on:
+  workflow_dispatch:          # the trigger: a button (or gh workflow run)
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 01-hello-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  hello:                      # the job: runs on a fresh machine
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:                    # the steps: run in order
+      - name: Say who started this
+        run: |
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Started by:   ${{ github.actor }}"
+          echo "Runner OS:    ${{ runner.os }}"
+
+      - name: Step 1 - check the date
+        run: date
+
+      - name: Step 2 - look at the machine
+        run: echo "This machine has $(nproc) CPUs and will be thrown away when we're done."
+
+      - name: Step 3 - write a job summary
+        run: |
+          {
+            echo "## Hello from GitHub Actions"
+            echo ""
+            echo "| What | Value |"
+            echo "|---|---|"
+            echo "| Trigger | ${{ github.event_name }} |"
+            echo "| Started by | ${{ github.actor }} |"
+            echo "| Runner OS | ${{ runner.os }} |"
+            echo "| Finished at | $(date -u '+%Y-%m-%d %H:%M UTC') |"
+          } >> "$GITHUB_STEP_SUMMARY"

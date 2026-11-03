@@ -1,0 +1,15 @@
+# This workflow breaks every guardrail ON PURPOSE. It lives outside
+# .github/workflows, so GitHub never runs it. Test-Guardrails.ps1 grades it.
+name: Risky workflow
+
+on:
+  push:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      password: SuperSecret123!
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Deploying with no limits"

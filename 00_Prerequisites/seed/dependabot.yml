@@ -1,0 +1,9 @@
+# Keeps the pinned action SHAs up to date. Patch updates merge themselves (06-dependabot-auto-merge.yml).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - dependencies

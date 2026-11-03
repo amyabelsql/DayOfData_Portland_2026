@@ -1,0 +1,13 @@
+# Groups auto-generated release notes by label.
+changelog:
+  categories:
+    - title: Database changes
+      labels: [database, database-change]
+    - title: Automation
+      labels: [automation]
+    - title: Docs
+      labels: [docs]
+    - title: Dependencies
+      labels: [dependencies]
+    - title: Everything else
+      labels: ["*"]

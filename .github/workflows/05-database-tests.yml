@@ -1,0 +1,64 @@
+# Step 05. Every pull request gets a brand new SQL Server, a fresh deploy, and a full test run.
+# It uses the same scripts as the local run: ./05_Containers/run.ps1
+name: 05 Database tests
+
+on:
+  pull_request:
+  workflow_dispatch:
+  workflow_call:              # step 07's nightly check calls this workflow
+    inputs:
+      simulate_failure:
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 05-database-tests-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  database-tests:             # the ruleset requires this check by name
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install go-sqlcmd
+        run: |
+          curl -sSL https://github.com/microsoft/go-sqlcmd/releases/download/v1.10.0/sqlcmd-linux-amd64.tar.bz2 | tar -xj -C /usr/local/bin sqlcmd
+          sqlcmd --version
+
+      - name: Generate a throwaway password
+        run: |
+          pw="Db1!$(openssl rand -hex 16)"
+          echo "::add-mask::$pw"
+          echo "MSSQL_SA_PASSWORD=$pw" >> "$GITHUB_ENV"
+          echo "SQLCMDPASSWORD=$pw" >> "$GITHUB_ENV"
+
+      - name: Start SQL Server 2022
+        run: docker run -d --name demoshop-sql -e ACCEPT_EULA=Y -e MSSQL_SA_PASSWORD -p 1433:1433 mcr.microsoft.com/mssql/server:2022-latest
+
+      - name: Wait for SQL Server
+        shell: pwsh
+        run: ./scripts/Wait-SqlServer.ps1
+
+      - name: Deploy the database
+        shell: pwsh
+        run: ./scripts/Deploy-Database.ps1
+
+      - name: Run the tests (results go to the job summary)
+        shell: pwsh
+        run: ./scripts/Invoke-DatabaseTests.ps1
+
+      - name: Simulate a failure (step 07 demo only)
+        if: inputs.simulate_failure
+        run: |
+          echo "::error::Simulated failure requested by the nightly check demo."
+          exit 1
+
+      - name: Remove the container
+        if: always()
+        run: docker rm -f demoshop-sql || true

@@ -1,0 +1,26 @@
+# Step 07. Grades every workflow file against the guardrails when a PR touches them.
+name: 07 Guardrails check
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 07-guardrails-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Grade the workflows
+        shell: pwsh
+        run: ./07_Guardrails/Test-Guardrails.ps1

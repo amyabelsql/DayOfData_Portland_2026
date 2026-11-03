@@ -1,0 +1,11 @@
+# Local SQL Server 2022 for step 05. The password comes from .env (gitignored).
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: demoshop-sql
+    platform: linux/amd64
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:?Run ./00_Prerequisites/run.ps1 or copy .env.example to .env}
+    ports:
+      - "1433:1433"
