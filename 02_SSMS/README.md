@@ -25,7 +25,7 @@ flowchart LR
 **Set up SSMS 22 once.** Git and GitHub Copilot are optional components in SSMS 22.
 1. Open the **Visual Studio Installer**.
 2. Next to SQL Server Management Studio 22, click **Modify**.
-3. Check **Git integration** and **GitHub Copilot** (under Code tools or AI assistance), then click **Modify**.
+3. Check **Git integration** and **GitHub Copilot**, then click **Modify**.
 4. In SSMS, sign in to GitHub from the account menu in the top right.
 
 ## Play with it

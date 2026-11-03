@@ -18,7 +18,8 @@ while ($true) {
 }
 $PSNativeCommandUseErrorActionPreference = $true
 
-Write-Step W 'Copy in every page from 03_DocsWikiMermaid/wiki, then commit and push.'
+Write-Step W 'Make the wiki match 03_DocsWikiMermaid/wiki exactly, then commit and push.'
+Get-ChildItem $temp -Filter *.md | Remove-Item   # pages not in the folder go away. Wiki history keeps them.
 Copy-Item "$PSScriptRoot/wiki/*.md" $temp -Force
 Push-Location $temp
 try {

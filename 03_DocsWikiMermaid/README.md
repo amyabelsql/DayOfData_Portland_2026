@@ -11,7 +11,7 @@ The runbook you need at 2 AM should match what's actually deployed. When docs si
 ## What you'll see
 1. The wiki gets cloned. It's just another Git repo.
 2. If the wiki is brand new, the script opens it and asks you to save one page first. GitHub requires that once.
-3. Every page from `wiki/` gets committed and pushed.
+3. The wiki is made to match the `wiki/` folder exactly, then pushed. Pages that aren't in the folder are removed. The wiki's history keeps them.
 4. The wiki opens, with a diagram on every page.
 
 ## How it works
@@ -32,6 +32,7 @@ flowchart LR
 | [Deployment Runbook](wiki/Deployment-Runbook.md) | flowchart |
 
 ## Play with it
+- Edit a page in the GitHub wiki editor, then run the script. The folder wins, because the folder is what gets reviewed.
 - Add a column to the ER diagram and run the script again.
 - Paste a diagram into any issue or PR comment. GitHub draws it there too.
 - Try the [Mermaid live editor](https://mermaid.live) to sketch a new diagram.

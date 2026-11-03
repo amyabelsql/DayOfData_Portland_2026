@@ -2,7 +2,9 @@
 
 This wiki lives as Markdown in the repo, in `03_DocsWikiMermaid/wiki/`. Every page gets reviewed in a pull request, just like code.
 
-## The eight steps
+To change a page, edit the file in the repo and run `pwsh ./03_DocsWikiMermaid/run.ps1`. Edits made here in the wiki get replaced the next time it runs.
+
+## The steps
 
 ```mermaid
 flowchart LR

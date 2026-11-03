@@ -1,6 +1,6 @@
 # 06 · Where Copilot helps, PRs that run themselves
 
-**The big idea:** the pull request can do its own chores, and Copilot can take the first pass.
+**The big idea:** the pull request can do its own chores, and Copilot can write the first draft.
 
 ## Why it matters
 Labels, reviewers, checks, and the merge button are all chores. Hand them to the pull request and spend your review time on the SQL.
@@ -46,5 +46,5 @@ flowchart LR
 ## Learn more
 - [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)
 - [Using Copilot code review](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review)
-- [About Copilot coding agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent)
+- [Assigning an issue to Copilot](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent)
 - [Automating Dependabot with GitHub Actions](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions)

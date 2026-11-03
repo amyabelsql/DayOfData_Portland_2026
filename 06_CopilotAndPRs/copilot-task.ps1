@@ -1,7 +1,7 @@
 # Files an issue for the Copilot coding agent. Run it before the talk, it takes a few minutes.
 param([switch]$Pause)
 . "$PSScriptRoot/../scripts/Common.ps1"
-Start-Demo '06' 'A task for Copilot' 'Copilot can take the first pass' -Pause:$Pause
+Start-Demo '06' 'A task for Copilot' 'Copilot can write the first draft' -Pause:$Pause
 
 $title = 'Add ShippedAt to Orders and a usp_GetShippedOrders proc'
 $url = gh issue list --state open --search "in:title `"$title`"" --json title,url --jq ".[] | select(.title == `"$title`") | .url"
